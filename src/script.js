@@ -1,5 +1,5 @@
-const navigationBar = document.querySelector("#nav");
-const headerText = document.querySelector();
+const navigationBar = document.querySelector("[data-nav]");
+const headerText = document.querySelector("[data-header]");
 window.onscroll = () => {
   if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
     navigationBar.classList.add("effect");
@@ -7,7 +7,15 @@ window.onscroll = () => {
     navigationBar.classList.remove("effect");
   }
 };
-window.onload = () => {
+
+function typeWriter() {
   let videosString = "videos";
-  for (let i = 0; i < videosString.length; i++) {}
-};
+  let i = 0;
+  if (i < headerText.length) {
+    headerText.innerHTML += videosString.charAt(i);
+    i++;
+    setTimeout(typeWriter, 1000);
+  }
+}
+
+typeWriter();

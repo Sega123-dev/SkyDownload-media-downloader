@@ -34,6 +34,7 @@ body {
     width:100%;
     background-color: #06111d;
     transition: 1s;
+    z-index: 99;
 }
 .effect {
     background: rgba(255, 255, 255, 0.05);
@@ -135,3 +136,31 @@ main {
     }
     
   }
+.features-section {
+    padding:2rem;
+}
+.features-section p {
+    font-family: "Roboto", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-variation-settings:
+    "wdth" 100;
+    font-size: 1.2rem;
+    padding:0.5rem;
+}
+.features-section h1 {
+    font-family: "Roboto", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-variation-settings:
+    "wdth" 100;
+    font-size: 2.7rem;
+    padding:0.5rem;
+}
+.yt-to-mp3,
+.spotify-downloaders,
+.video-downloader {
+    margin:5rem 0 5rem 5rem;
+}

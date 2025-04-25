@@ -164,3 +164,19 @@ main {
 .video-downloader {
     margin:5rem 0 5rem 5rem;
 }
+.features-section button {
+    padding:1rem;
+    margin-top:1rem;
+    background:transparent;
+    border:2px solid var(--text-color);
+    color:var(--text-color);
+    font-family: "Roboto", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 200;
+    font-style: normal;
+    font-variation-settings:
+    "wdth" 100;
+    font-size: 1.2rem;
+    cursor:pointer;
+    transition: 0.5s ease;
+}

@@ -1,6 +1,7 @@
 const navigationBar = document.querySelector("[data-nav]");
 const headerText = document.querySelector("[data-header]");
 const hamburgerMenuIcon = document.querySelector("[data-hamburger]");
+const SVG = document.querySelector("svg");
 window.onscroll = () => {
   if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
     navigationBar.classList.add("effect");
@@ -65,10 +66,11 @@ window.onload = function () {
   css.innerHTML = ".typewrite > .wrap { border-right: 0.08em solid #fff}";
   document.body.appendChild(css);
 };
-hamburgerMenuIcon.addEventListener("click", () => {
-  if (hamburgerMenuIcon.innerHTML == "&times;") {
-    hamburgerMenuIcon.innerHTML = "hamburger";
-  }
-
+function toggleHamburger() {
   hamburgerMenuIcon.innerHTML = "&times;";
-});
+  if (SVG.style.display === "none") {
+    SVG.style.display = "block";
+  } else {
+    SVG.style.display = "none";
+  }
+}

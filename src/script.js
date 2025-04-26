@@ -1,5 +1,6 @@
 const navigationBar = document.querySelector("[data-nav]");
 const headerText = document.querySelector("[data-header]");
+const hamburgerMenuIcon = document.querySelector("[data-hamburger]");
 window.onscroll = () => {
   if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
     navigationBar.classList.add("effect");
@@ -7,7 +8,7 @@ window.onscroll = () => {
     navigationBar.classList.remove("effect");
   }
 };
-var TxtType = function (el, toRotate, period) {
+let TxtType = function (el, toRotate, period) {
   this.toRotate = toRotate;
   this.el = el;
   this.loopNum = 0;
@@ -64,3 +65,10 @@ window.onload = function () {
   css.innerHTML = ".typewrite > .wrap { border-right: 0.08em solid #fff}";
   document.body.appendChild(css);
 };
+hamburgerMenuIcon.addEventListener("click", () => {
+  if (hamburgerMenuIcon.innerHTML == "&times;") {
+    hamburgerMenuIcon.innerHTML = "hamburger";
+  }
+
+  hamburgerMenuIcon.innerHTML = "&times;";
+});

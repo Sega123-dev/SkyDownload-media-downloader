@@ -67,6 +67,9 @@ body {
 .glasmorph-nav a:hover {
     --underline-width: 100%;
 }
+.glasmorph-nav span{
+    display: none;
+}
 main {
     padding: 0.5rem; 
     margin-top: 5rem;
@@ -221,3 +224,31 @@ main {
 .footer-options a:hover {
   text-decoration: underline;
 }
+@media only screen and (max-width: 500px) {
+    .content-wrapper h1 {
+       font-size:2rem;
+       padding-bottom:0.5rem;
+    }
+    .yt-to-mp3,
+    .spotify-downloaders,
+    .video-downloader {
+        margin:0rem;
+        padding-bottom:1rem;
+    }
+    .yt-to-mp3 h1,
+    .spotify-downloaders h1,
+    .video-downloader h1 {
+        font-size: 2rem;
+    }
+    .glasmorph-nav a {
+        display:none;
+    }
+    .glasmorph-nav span {
+        display: inline-block;
+        cursor: pointer;
+    }
+    .glasmorph-nav {
+        justify-content: start;
+        padding: 1rem;
+    }
+  }

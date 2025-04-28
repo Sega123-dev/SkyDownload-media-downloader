@@ -224,6 +224,9 @@ main {
 .footer-options a:hover {
   text-decoration: underline;
 }
+.hamburger-icon {
+    display:block;
+}
 @media only screen and (max-width: 500px) {
     .content-wrapper h1 {
        font-size:2rem;
@@ -250,5 +253,11 @@ main {
     .glasmorph-nav {
         justify-content: start;
         padding: 1rem;
+    }
+    .hamburger-icon {
+        display:block;
+    }
+    .hamburger-icon nav a{
+        display:block;
     }
   }

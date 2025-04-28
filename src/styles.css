@@ -227,6 +227,24 @@ main {
 .hamburger-icon {
     display:block;
 }
+.four04-anchor {
+    color:var(--text-color);
+    margin:0 0.5rem 0 0.5rem;
+    font-family: "Roboto", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-variation-settings:
+    "wdth" 100;
+    text-decoration: none;
+}
+.four04-anchor:hover {
+    text-decoration: underline;
+}
+.about-wrapper {
+    margin-left:4.5rem;
+    margin-right: 4.5rem;
+}
 @media only screen and (max-width: 500px) {
     .content-wrapper h1 {
        font-size:2rem;

@@ -247,7 +247,7 @@ main {
 }
 @media only screen and (max-width: 500px) {
     .content-wrapper h1 {
-       font-size:2rem;
+       font-size:1.8rem;
        padding-bottom:0.5rem;
     }
     .yt-to-mp3,
@@ -278,4 +278,24 @@ main {
     .hamburger-icon nav a{
         display:block;
     }
+    .footer-options  {
+        text-align: center;
+    }
+    .four04-anchor {
+        text-align: center;
+        margin-top: 0 !important;
+    }
+    .content-wrapper {
+        font-size:1rem !important;
+        padding:1rem;
+    }
+    
+    .about-wrapper {
+        margin: 0;
+    }
+    .yt-to-mp3,
+    .spotify-downloaders,
+    .video-downloader {
+       margin:0;
+}
   }

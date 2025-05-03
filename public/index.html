@@ -4,31 +4,37 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../src/styles.css" />
+    <script src="../src/script.js" defer></script>
     <title>SkyDownload - Downloader for Your Favorite Songs and Videos.</title>
   </head>
   <body>
     <header>
       <nav class="glasmorph-nav" data-nav>
-        <a href="#" aria-label="Youtube to MP3">Yt to MP3</a>
-        <a href="#" aria-label="Spotify downloaders">Spotify downloaders</a>
-        <a href="#" aria-label="Video downloader">Video downloader</a>
         <span
           class="hamburger-icon"
           data-hamburger
           onclick="toggleHamburger()"
           aria-label="Menu icon"
         >
-          <svg viewBox="0 0 100 80" width="40" height="40" fill="#edf2f4">
+          <svg
+            viewBox="0 0 100 80"
+            width="40"
+            height="40"
+            fill="#edf2f4"
+            data-svg
+          >
             <rect width="100" height="15"></rect>
             <rect y="30" width="100" height="15"></rect>
             <rect y="60" width="100" height="15"></rect>
           </svg>
-          <nav data-rwd-nav>
-            <a href="#" aria-label="Youtube to MP3">Yt to MP3</a>
-            <a href="#" aria-label="Spotify downloaders">Spotify downloaders</a>
-            <a href="#" aria-label="Video downloader">Video downloader</a>
-          </nav>
         </span>
+        <a href="#" aria-label="Youtube to MP3" data-anchors>Yt to MP3</a>
+        <a href="#" aria-label="Spotify downloaders" data-anchors
+          >Spotify downloaders</a
+        >
+        <a href="#" aria-label="Video downloader" data-anchors
+          >Video downloader</a
+        >
       </nav>
     </header>
     <main>

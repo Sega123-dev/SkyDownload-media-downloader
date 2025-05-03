@@ -1,7 +1,6 @@
 const navigationBar = document.querySelector("[data-nav]");
 const headerText = document.querySelector("[data-header]");
 const hamburgerMenuIcon = document.querySelector("[data-hamburger]");
-const rwdNav = document.querySelector("[data-rwd-nav]");
 
 window.onscroll = () => {
   if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
@@ -67,11 +66,14 @@ window.onload = function () {
   css.innerHTML = ".typewrite > .wrap { border-right: 0.08em solid #fff}";
   document.body.appendChild(css);
 };
-function myFunction() {
-  var x = document.getElementById("[data-rwd-nav]");
-  if (x.style.display === "none") {
-    x.style.display = "block";
-  } else {
-    x.style.display = "none";
-  }
+function toggleHamburger() {
+  let anchors = document.querySelectorAll("[data-anchors]");
+  anchors.forEach((anchor) => {
+    if (anchor.style.display === "none") {
+      anchor.style.display = "block";
+    } else {
+      anchor.style.display = "none";
+    }
+  });
+  hamburgerMenuIcon.style.cursor = "pointer";
 }

@@ -263,14 +263,15 @@ main {
     }
     .glasmorph-nav a {
         display:none;
+        padding:2rem !important;
     }
     .glasmorph-nav span {
         display: inline-block;
         cursor: pointer;
     }
     .glasmorph-nav {
-        justify-content: start;
         padding: 1rem;
+        display:block;
     }
     .hamburger-icon {
         display:block;
@@ -296,6 +297,6 @@ main {
     .yt-to-mp3,
     .spotify-downloaders,
     .video-downloader {
-       margin:0;
+    margin:0;
 }
   }

@@ -264,6 +264,8 @@ main {
     .glasmorph-nav a {
         display:none;
         padding:2rem !important;
+        margin:5.5rem 0 5.5rem 0;
+        text-align: center;
     }
     .glasmorph-nav span {
         display: inline-block;

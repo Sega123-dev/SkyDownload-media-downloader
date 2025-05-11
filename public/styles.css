@@ -318,7 +318,7 @@ main {
     .glasmorph-nav a {
         display:none;
         padding:2rem !important;
-        margin:5.5rem 0 5.5rem 0;
+        margin:4rem 0 4rem 0;
         text-align: center;
     }
     .glasmorph-nav span {
@@ -340,7 +340,7 @@ main {
     }
     .four04-anchor {
         text-align: center;
-        margin-top: 0 !important;
+        margin-left: 0 !important;
     }
     .content-wrapper {
         font-size:1rem !important;
@@ -355,4 +355,15 @@ main {
     .video-downloader {
     margin:0;
 }
-  }
+.center-wrapper h1 {
+    font-size: 1.5rem;
+}
+.URLinput {
+    width:100vw;
+    margin:0 0.2rem 0 0.2rem
+}
+.center-wrapper button {
+  display: block;      
+  margin: 0.5rem auto; 
+}
+}

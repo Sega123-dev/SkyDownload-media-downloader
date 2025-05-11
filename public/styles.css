@@ -357,13 +357,14 @@ main {
 }
 .center-wrapper h1 {
     font-size: 1.5rem;
+    text-align: center;
+    margin:0.5rem 0;
 }
 .URLinput {
-    width:100vw;
-    margin:0 0.2rem 0 0.2rem
+    width:95vw !important;
 }
 .center-wrapper button {
   display: block;      
-  margin: 0.5rem auto; 
+  margin: 1rem auto; 
 }
 }

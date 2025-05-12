@@ -1,6 +1,12 @@
 const express = require("express");
 const path = require("path");
 const app = express();
+const fetch = require("node-fetch");
+const bodyParser = require("body-parser");
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
 app.use(express.static("public"));
 
 app.listen(3000);
@@ -35,3 +41,5 @@ app
 app.use((req, res) => {
   res.status(404).sendFile(path.join(__dirname, "../public", "404.html"));
 });
+// Parse URL-encoded form data
+app.use(bodyParser.urlencoded({ extended: true }));

@@ -77,39 +77,3 @@ function toggleHamburger() {
   });
   hamburgerMenuIcon.style.cursor = "pointer";
 }
-
-let widgetId;
-
-function onloadCallback() {
-  widgetId = grecaptcha.render("recaptcha-container", {
-    sitekey: "6LcibDcrAAAAAFqRmszWzSZOy6O0wrEK1CiYkteo", // Your Site Key
-    theme: "light",
-  });
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-  const form = document.getElementById("form");
-
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-
-    const token = grecaptcha.getResponse(widgetId);
-    if (!token) {
-      alert("Please complete the reCAPTCHA.");
-      return;
-    }
-
-    const url = document.getElementById("YTtoMP3URLInput").value;
-
-    const res = await fetch("/video-downloader", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ token, url }),
-    });
-
-    const data = await res.json();
-    document.getElementById("responseMessage").innerText = data.verified
-      ? "CAPTCHA Verified. Proceeding..."
-      : "CAPTCHA Verification Failed.";
-  });
-});

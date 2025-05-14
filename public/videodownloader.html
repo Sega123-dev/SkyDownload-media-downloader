@@ -3,40 +3,43 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SkyDownload-Youtube video downloader</title>
+    <title>SkyDownload - YouTube Video Downloader</title>
     <link rel="stylesheet" href="styles.css" />
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script
+      src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
+      async
+      defer
+    ></script>
+    <script src="script.js" defer></script>
   </head>
   <body>
     <div class="center-wrapper">
       <div>
-        <h1>Youtube video downloader</h1>
-
-        <form action="/video-downloader" method="POST" id="form">
+        <h1>YouTube Video Downloader</h1>
+        <form id="form">
           <input
             type="text"
-            name="YTtoMP3URLInput"
+            name="url"
             id="YTtoMP3URLInput"
             placeholder="Paste Your URL here"
             class="URLinput"
             style="width: 72%"
-            aria-required="true"
+            required
           />
+          <div id="recaptcha-container" class="g-recaptcha"></div>
           <button class="button-effect" type="submit">Download</button>
           <a
             href="index.html"
             class="four04-anchor"
             style="display: block; text-align: center; margin: 1rem"
-            >Back to homepage</a
           >
-          <div style="display: flex; justify-content: center">
-            <div
-              aria-required="true"
-              class="g-recaptcha"
-              data-sitekey="6LcibDcrAAAAAFqRmszWzSZOy6O0wrEK1CiYkteo"
-            ></div>
-          </div>
+            Back to homepage
+          </a>
         </form>
+        <div
+          id="responseMessage"
+          style="text-align: center; margin-top: 1rem"
+        ></div>
       </div>
     </div>
   </body>

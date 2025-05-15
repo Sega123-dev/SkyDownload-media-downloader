@@ -80,6 +80,13 @@ function toggleHamburger() {
 
 let widgetId;
 
+function onloadCallback() {
+  widgetId = grecaptcha.render("recaptcha-container", {
+    sitekey: "6LcibDcrAAAAAFqRmszWzSZOy6O0wrEK1CiYkteo", // Your Site Key
+    theme: "light",
+  });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("form");
 
@@ -104,6 +111,5 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("responseMessage").innerText = data.verified
       ? "CAPTCHA Verified. Proceeding..."
       : "CAPTCHA Verification Failed.";
-    grecaptcha.reset(widgetId);
   });
 });

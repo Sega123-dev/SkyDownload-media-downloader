@@ -4,6 +4,7 @@ const app = express();
 const fetch = require("node-fetch");
 const bodyParser = require("body-parser");
 require("dotenv").config();
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
@@ -41,7 +42,7 @@ app
 
 app.post("/video-downloader", async (req, res) => {
   const token = req.body.token;
-  const secretKey = process.env.RECAPTCHA_SECRET_KEY; // Use your secret key here!
+  const secretKey = "6LcibDcrAAAAAAdPG53CcDVRHUAKtsf94bPQwFsw"; // Your Secret Key
 
   if (!token) {
     return res
@@ -50,26 +51,21 @@ app.post("/video-downloader", async (req, res) => {
   }
 
   try {
-    const params = new URLSearchParams();
-    params.append("secret", secretKey);
-    params.append("response", token);
-
     const response = await fetch(
       "https://www.google.com/recaptcha/api/siteverify",
       {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: params.toString(),
+        body: `secret=${secretKey}&response=${token}`,
       }
     );
 
     const data = await response.json();
 
-    console.log("Google reCAPTCHA response:", data);
-
     if (data.success) {
       res.json({ verified: true });
     } else {
+      console.log("reCAPTCHA failed:", data);
       res.status(403).json({ verified: false, error: data["error-codes"] });
     }
   } catch (err) {

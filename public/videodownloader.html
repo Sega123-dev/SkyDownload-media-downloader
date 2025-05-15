@@ -11,6 +11,14 @@
       defer
     ></script>
     <script src="script.js" defer></script>
+    <script>
+      function onloadCallback() {
+        widgetId = grecaptcha.render("recaptcha-container", {
+          sitekey: "6LcgbDcrAAAAACVIGK9rxNM8Ioz3VyO2NH19LD_i", // Your Site Key
+          theme: "light",
+        });
+      }
+    </script>
   </head>
   <body>
     <div class="center-wrapper">
@@ -26,7 +34,6 @@
             style="width: 72%"
             required
           />
-          <div id="recaptcha-container" class="g-recaptcha"></div>
           <button class="button-effect" type="submit">Download</button>
           <a
             href="index.html"
@@ -35,6 +42,9 @@
           >
             Back to homepage
           </a>
+          <div style="display: flex; justify-content: center">
+            <div id="recaptcha-container" class="g-recaptcha"></div>
+          </div>
         </form>
         <div
           id="responseMessage"

@@ -78,21 +78,21 @@ function toggleHamburger() {
   hamburgerMenuIcon.style.cursor = "pointer";
 }
 
-let widgetId;
+let widgetIdVidDownloader;
 
 document.addEventListener("DOMContentLoaded", () => {
-  const form = document.getElementById("form");
+  const form = document.getElementById("form-vd");
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    const token = grecaptcha.getResponse(widgetId);
+    const token = grecaptcha.getResponse(widgetIdVidDownloader);
     if (!token) {
       alert("Please complete the reCAPTCHA.");
       return;
     }
 
-    const url = document.getElementById("YTtoMP3URLInput").value;
+    const url = document.getElementById("VidDownloaderURLInput").value;
 
     const res = await fetch("/video-downloader", {
       method: "POST",
@@ -101,9 +101,71 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     const data = await res.json();
-    document.getElementById("responseMessage").innerText = data.verified
+    document.getElementById("responseMessageVidDownloader").innerText =
+      data.verified
+        ? "CAPTCHA Verified. Proceeding..."
+        : "CAPTCHA Verification Failed.";
+    grecaptcha.reset(widgetIdVidDownloader);
+  });
+});
+
+let widgetIdSpotDownloader;
+
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("form-sd");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const token = grecaptcha.getResponse(widgetIdSpotDownloader);
+    if (!token) {
+      alert("Please complete the reCAPTCHA.");
+      return;
+    }
+
+    const url = document.getElementById("SpotDownloaderURLInput").value;
+
+    const res = await fetch("/spotify-downloader", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ token, url }),
+    });
+
+    const data = await res.json();
+    document.getElementById("responseMessageSpotDownloader").innerText =
+      data.verified
+        ? "CAPTCHA Verified. Proceeding..."
+        : "CAPTCHA Verification Failed.";
+    grecaptcha.reset(widgetIdSpotDownloader);
+  });
+});
+
+let widgetIdYtToMP3;
+
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("form-yt");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const token = grecaptcha.getResponse(widgetIdYtToMP3);
+    if (!token) {
+      alert("Please complete the reCAPTCHA.");
+      return;
+    }
+
+    const url = document.getElementById("YTToMP3URLInput").value;
+
+    const res = await fetch("/yt-to-mp3", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ token, url }),
+    });
+
+    const data = await res.json();
+    document.getElementById("responseMessageYtToMP3").innerText = data.verified
       ? "CAPTCHA Verified. Proceeding..."
       : "CAPTCHA Verification Failed.";
-    grecaptcha.reset(widgetId);
+    grecaptcha.reset(widgetIdYtToMP3);
   });
 });

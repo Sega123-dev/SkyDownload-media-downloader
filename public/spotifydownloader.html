@@ -11,16 +11,24 @@
       defer
     ></script>
     <script src="script.js" defer></script>
+    <script>
+      function onloadCallback() {
+        widgetId = grecaptcha.render("recaptcha-container", {
+          sitekey: "6LcgbDcrAAAAACVIGK9rxNM8Ioz3VyO2NH19LD_i",
+          theme: "light",
+        });
+      }
+    </script>
   </head>
   <body>
     <div class="center-wrapper">
       <div>
         <h1>Spotify downloader</h1>
-        <form id="form">
+        <form id="form-sd">
           <input
             type="text"
-            name="url"
-            id="YTtoMP3URLInput"
+            name="SpotDownloaderURLInput"
+            id="SpotDownloaderURLInput"
             placeholder="Paste Your URL here"
             class="URLinput"
             style="width: 63%"
@@ -34,10 +42,14 @@
           >
             Back to homepage
           </a>
+          <div style="display: flex; justify-content: center">
+            <div id="recaptcha-container" class="g-recaptcha"></div>
+          </div>
         </form>
         <div
-          id="responseMessage"
-          style="text-align: center; margin-top: 1rem"
+          class="four04-anchor"
+          id="responseMessageSpotDownloader"
+          style="text-align: center; margin-top: 1rem; text-decoration: none"
         ></div>
       </div>
     </div>

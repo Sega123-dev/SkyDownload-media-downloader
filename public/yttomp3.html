@@ -5,32 +5,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SkyDownload-Youtube to MP3 converter</title>
     <link rel="stylesheet" href="styles.css" />
+    <script
+      src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
+      async
+      defer
+    ></script>
+    <script src="script.js" defer></script>
+    <script>
+      function onloadCallback() {
+        widgetId = grecaptcha.render("recaptcha-container", {
+          sitekey: "6LcgbDcrAAAAACVIGK9rxNM8Ioz3VyO2NH19LD_i",
+          theme: "light",
+        });
+      }
+    </script>
   </head>
   <body>
     <div class="center-wrapper">
       <div>
-        <h1>Youtube to MP3 converter</h1>
-        <input
-          type="text"
-          name="YTtoMP3URLInput"
-          id="YTtoMP3URLInput"
-          placeholder="Paste Your URL here"
-          class="URLinput"
-        />
-        <button class="button-effect">Convert</button>
-        <a
-          href="index.html"
+        <h1>YouTube MP3 Converter</h1>
+        <form id="form-yt">
+          <input
+            type="text"
+            name="YTToMP3URLInput"
+            id="YTToMP3URLInput"
+            placeholder="Paste Your URL here"
+            class="URLinput"
+            style="width: 70%"
+            required
+          />
+          <button class="button-effect" type="submit">Download</button>
+          <a
+            href="index.html"
+            class="four04-anchor"
+            style="display: block; text-align: center; margin: 1rem"
+          >
+            Back to homepage
+          </a>
+          <div style="display: flex; justify-content: center">
+            <div id="recaptcha-container" class="g-recaptcha"></div>
+          </div>
+        </form>
+        <div
           class="four04-anchor"
-          style="display: block; text-align: center; margin: 1rem"
-          >Back to homepage</a
-        >
-        <div style="display: flex; justify-content: center">
-          <div
-            aria-required="true"
-            class="g-recaptcha"
-            data-sitekey="6LcibDcrAAAAAFqRmszWzSZOy6O0wrEK1CiYkteo"
-          ></div>
-        </div>
+          id="responseMessageYtToMP3"
+          style="text-align: center; margin-top: 1rem; text-decoration: none"
+        ></div>
       </div>
     </div>
   </body>

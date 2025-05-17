@@ -66,8 +66,6 @@ app.post("/video-downloader", async (req, res) => {
 
     const data = await response.json();
 
-    console.log("Google reCAPTCHA response:", data);
-
     if (data.success) {
       res.json({ verified: true });
     } else {
@@ -106,8 +104,6 @@ app.post("/spotify-downloader", async (req, res) => {
 
     const data = await response.json();
 
-    console.log("Google reCAPTCHA response:", data);
-
     if (data.success) {
       res.json({ verified: true });
     } else {
@@ -145,8 +141,6 @@ app.post("/yt-to-mp3", async (req, res) => {
     );
 
     const data = await response.json();
-
-    console.log("Google reCAPTCHA response:", data);
 
     if (data.success) {
       res.json({ verified: true });

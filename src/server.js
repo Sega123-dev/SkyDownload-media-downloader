@@ -154,6 +154,8 @@ app.post("/yt-to-mp3", async (req, res) => {
   }
 });
 
+console.log("Branch");
+
 app.use((req, res) => {
   res.status(404).sendFile(path.join(__dirname, "../public", "404.html"));
 });

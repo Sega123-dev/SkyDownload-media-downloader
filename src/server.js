@@ -67,7 +67,7 @@ app.post("/video-downloader", async (req, res) => {
     const data = await response.json();
 
     if (data.success) {
-      res.json({ verified: true });
+      res.json({ verified: true, redirect: "/home" });
     } else {
       console.log("reCAPTCHA failed:", data);
       res.status(403).json({ verified: false, error: data["error-codes"] });
@@ -80,7 +80,7 @@ app.post("/video-downloader", async (req, res) => {
 
 app.post("/spotify-downloader", async (req, res) => {
   const token = req.body.token;
-  const secretKey = process.env.RECAPTCHA_SECRET_KEY; // Your Secret Key
+  const secretKey = process.env.RECAPTCHA_SECRET_KEY;
 
   if (!token) {
     return res
@@ -105,7 +105,7 @@ app.post("/spotify-downloader", async (req, res) => {
     const data = await response.json();
 
     if (data.success) {
-      res.json({ verified: true });
+      res.json({ verified: true, redirect: "/home" });
     } else {
       console.log("reCAPTCHA failed:", data);
       res.status(403).json({ verified: false, error: data["error-codes"] });
@@ -143,7 +143,7 @@ app.post("/yt-to-mp3", async (req, res) => {
     const data = await response.json();
 
     if (data.success) {
-      res.json({ verified: true });
+      return res.json({ verified: true, redirect: "/home" });
     } else {
       console.log("reCAPTCHA failed:", data);
       res.status(403).json({ verified: false, error: data["error-codes"] });

@@ -61,7 +61,7 @@ window.onload = function () {
       new TxtType(elements[i], JSON.parse(toRotate), period);
     }
   }
-  // INJECT CSS
+
   var css = document.createElement("style");
   css.innerHTML = ".typewrite > .wrap { border-right: 0.08em solid #fff}";
   document.body.appendChild(css);
@@ -98,7 +98,15 @@ document.addEventListener("DOMContentLoaded", () => {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ token, url }),
-    });
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.redirect) {
+          window.location.href = data.redirect;
+        } else {
+          console.error(`Failed redirecting to ${data.redirect}`);
+        }
+      });
 
     const data = await res.json();
     document.getElementById("responseMessageVidDownloader").innerText =
@@ -129,7 +137,15 @@ document.addEventListener("DOMContentLoaded", () => {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ token, url }),
-    });
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.redirect) {
+          window.location.href = data.redirect;
+        } else {
+          console.error(`Failed redirecting to ${data.redirect}`);
+        }
+      });
 
     const data = await res.json();
     document.getElementById("responseMessageSpotDownloader").innerText =
@@ -160,8 +176,15 @@ document.addEventListener("DOMContentLoaded", () => {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ token, url }),
-    });
-
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.redirect) {
+          window.location.href = data.redirect;
+        } else {
+          console.error(`Failed redirecting to ${data.redirect}`);
+        }
+      });
     const data = await res.json();
     document.getElementById("responseMessageYtToMP3").innerText = data.verified
       ? "CAPTCHA Verified. Proceeding..."

@@ -186,31 +186,40 @@ app.get("/download-mp3", async (req, res) => {
 
   try {
     const info = await ytdl.getInfo(url);
+    const title = info.videoDetails.title;
 
-    if (!info || !info.videoDetails) {
-      throw new Error("Could not get video info");
-    }
+    res.render("downloadmp3", { title, url });
+  } catch (err) {
+    console.error("Render error:", err);
+    res.status(500).send("Failed to fetch video info");
+  }
+});
+app.get("/fetch-mp3", async (req, res) => {
+  const url = req.query.url;
 
-    const title = info.videoDetails.title.replace(/[^a-zA-Z0-9]/g, "_");
+  if (!url || !ytdl.validateURL(url)) {
+    return res.status(400).send("Invalid or missing YouTube URL");
+  }
 
-    res.header("Content-Disposition", `attachment; filename="${title}.mp3"`);
+  try {
+    const info = await ytdl.getInfo(url);
+    const title =
+      info.videoDetails?.title?.replace(/[^a-zA-Z0-9]/g, "_") || "video";
+
+    res.setHeader("Content-Disposition", `attachment; filename="${title}.mp3"`);
 
     const stream = ytdl(url, { quality: "highestaudio" });
 
     ffmpeg(stream)
       .audioBitrate(128)
-      .toFormat("mp3")
+      .format("mp3")
       .on("error", (err) => {
-        console.error("ffmpeg error:", err);
-        if (!res.headersSent) res.status(500).send("Audio conversion failed.");
+        console.error("FFmpeg error:", err);
+        res.status(500).send("Error processing audio");
       })
       .pipe(res, { end: true });
   } catch (err) {
-    console.error("Error in /download-mp3:", err);
+    console.error("Download error:", err);
     res.status(500).send("Failed to download MP3");
   }
-});
-
-app.use((req, res) => {
-  res.status(404).sendFile(path.join(__dirname, "../public", "404.html"));
 });

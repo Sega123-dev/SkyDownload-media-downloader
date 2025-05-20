@@ -2,14 +2,13 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Download MP3</title>
   </head>
   <body>
     <h1>Video Title:</h1>
     <p><%= title %></p>
 
-    <a href="/download-mp3?url=<%= encodeURIComponent(url) %>">
+    <a href="/fetch-mp3?url=<%= encodeURIComponent(url) %>">
       <button>Download MP3</button>
     </a>
 

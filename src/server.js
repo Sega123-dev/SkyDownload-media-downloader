@@ -23,8 +23,6 @@ app.locals.encodeURIComponent = encodeURIComponent;
 
 app.listen(3000);
 
-app.use(express.static(path.join(__dirname, "../public"))); // Serve static files
-
 app
   .get("/home", (req, res) => {
     res.sendFile(path.join(__dirname, "../public", "index.html"));
@@ -204,7 +202,8 @@ app.get("/fetch-mp3", async (req, res) => {
   try {
     const info = await ytdl.getInfo(url);
     const title =
-      info.videoDetails?.title?.replace(/[^a-zA-Z0-9]/g, "_") || "video";
+      "[SKYDOWNLOAD] " +
+        info.videoDetails?.title?.replace(/[^a-zA-Z0-9]/g, "_") || "video";
 
     res.setHeader("Content-Disposition", `attachment; filename="${title}.mp3"`);
 

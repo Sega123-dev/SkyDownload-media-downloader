@@ -185,8 +185,9 @@ app.get("/download-mp3", async (req, res) => {
   try {
     const info = await ytdl.getInfo(url);
     const title = info.videoDetails.title;
+    const thumbnail = info.videoDetails.thumbnails.pop().url;
 
-    res.render("downloadmp3", { title, url });
+    res.render("downloadmp3", { title, url, thumbnail });
   } catch (err) {
     console.error("Render error:", err);
     res.status(500).send("Failed to fetch video info");
@@ -204,7 +205,6 @@ app.get("/fetch-mp3", async (req, res) => {
     const title =
       "[SKYDOWNLOAD] " +
         info.videoDetails?.title?.replace(/[^a-zA-Z0-9]/g, "_") || "video";
-
     res.setHeader("Content-Disposition", `attachment; filename="${title}.mp3"`);
 
     const stream = ytdl(url, { quality: "highestaudio" });

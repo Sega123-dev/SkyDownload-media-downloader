@@ -51,12 +51,17 @@ app
 
 app.post("/video-downloader", async (req, res) => {
   const token = req.body.token;
-  const secretKey = process.env.RECAPTCHA_SECRET_KEY; // Your Secret Key
+  const secretKey = process.env.RECAPTCHA_SECRET_KEY;
+  const videoURL = req.body.VidDownloaderURLInput;
 
   if (!token) {
     return res
       .status(400)
       .json({ verified: false, error: "No token provided" });
+  }
+
+  if (!ytdl.validateURL(videoURL)) {
+    return res.status(400).json({ success: "false", error: "Not a valid URL" });
   }
 
   try {
@@ -74,16 +79,72 @@ app.post("/video-downloader", async (req, res) => {
     );
 
     const data = await response.json();
-
-    if (data.success) {
-      res.json({ verified: true, redirect: "/home" });
-    } else {
-      console.log("reCAPTCHA failed:", data);
-      res.status(403).json({ verified: false, error: data["error-codes"] });
+    if (!data.success) {
+      res
+        .status(403)
+        .json({ success: false, error: "CAPTCHA verification failed" });
     }
+    res.json({
+      success: true,
+      downloadPage: `/download-video?videoURL=${encodeURIComponent(videoURL)}`,
+    });
   } catch (err) {
     console.error("Error verifying CAPTCHA:", err);
     res.status(500).json({ verified: false, error: "Server error" });
+  }
+});
+
+app.get("/download-video", async (req, res) => {
+  const url = req.query.videoURL;
+
+  if (!url || !ytdl.validateURL(url)) {
+    return res.status(400).send("Invalid or missing YouTube URL");
+  }
+
+  try {
+    const info = await ytdl.getInfo(url);
+    const title = info.videoDetails.title;
+    const thumbnail = info.videoDetails.thumbnails.pop().url;
+
+    res.render("downloadvideo", { title, url, thumbnail });
+  } catch (err) {
+    console.error("Render error:", err);
+    res.status(500).send("Failed to fetch video info");
+  }
+});
+
+app.get("/fetch-mp4", async (req, res) => {
+  const url = req.query.videoURL;
+
+  if (!url || !ytdl.validateURL(url)) {
+    return res.status(400).send("Invalid or missing YouTube URL");
+  }
+
+  try {
+    const info = await ytdl.getInfo(url);
+    const title =
+      "[SKYDOWNLOAD] " +
+        info.videoDetails?.title?.replace(/[^a-zA-Z0-9]/g, "_") || "video";
+
+    res.setHeader("Content-Disposition", `attachment; filename="${title}.mp4"`);
+    res.setHeader("Content-Type", "video/mp4");
+
+    // Choose the best video+audio format in MP4 container
+    const stream = ytdl(url, {
+      quality: "highest", // chooses best video+audio combined format
+      filter: (format) =>
+        format.container === "mp4" && format.hasVideo && format.hasAudio,
+    });
+
+    stream.on("error", (err) => {
+      console.error("Stream error:", err);
+      res.status(500).send("Error streaming video");
+    });
+
+    stream.pipe(res);
+  } catch (err) {
+    console.error("Download error:", err);
+    res.status(500).send("Failed to download MP4");
   }
 });
 

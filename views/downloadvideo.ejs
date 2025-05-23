@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Download MP3</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="">
+    <div class="content-wrapper" style="display: flex; justify-content: center">
+      <div style="text-align: center">
+        <h1>Video Title:</h1>
+        <p><%= title %></p>
+        <div style="background-position: center; background-size: cover">
+          <img
+            style="display: block; margin: 1rem auto 1rem auto"
+            src="<%= thumbnail %>"
+            alt="Video thumbnail"
+            height="500"
+            width="500"
+          />
+        </div>
+
+        <a href="/fetch-mp4?videoURL=<%= encodeURIComponent(url) %>">
+          <button class="button-effect">Download video</button>
+        </a>
+
+        <br /><br />
+        <a href="/video-downloader" class="four04-anchor"
+          >Download another video</a
+        >
+      </div>
+    </div>
+  </body>
+</html>

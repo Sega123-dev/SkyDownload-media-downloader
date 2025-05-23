@@ -92,23 +92,29 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    const url = document.getElementById("VidDownloaderURLInput").value;
+    const url = document.getElementById("VidDownloaderURLInput").value.trim();
 
-    const res = await fetch("/video-downloader", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ token, url }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.redirect) {
-          window.location.href = data.redirect;
-        } else {
-          console.error(`Failed redirecting to ${data.redirect}`);
-        }
+    try {
+      const res = await fetch("/video-downloader", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        // Change 'url' to 'YTToMP3URLInput' to match backend
+        body: JSON.stringify({ token, VidDownloaderURLInput: url }),
       });
 
-    const data = await res.json();
+      const data = await res.json();
+
+      if (data.success && data.downloadPage) {
+        window.location.href = data.downloadPage;
+      } else {
+        document.getElementById("responseMessageVidDownloader").innerText =
+          data.error || "Failed to verify or convert.";
+      }
+    } catch (err) {
+      console.error("Error:", err);
+      document.getElementById("responseMessageVidDownloader").innerText =
+        "An error occurred.";
+    }
     document.getElementById("responseMessageVidDownloader").innerText =
       data.verified
         ? "CAPTCHA Verified. Proceeding..."
@@ -193,10 +199,9 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("responseMessageYtToMP3").innerText =
         "An error occurred.";
     }
-    document.getElementById("responseMessageSpotDownloader").innerText =
-      data.verified
-        ? "CAPTCHA Verified. Proceeding..."
-        : "CAPTCHA Verification Failed.";
+    document.getElementById("responseMessageYtToMP3").innerText = data.verified
+      ? "CAPTCHA Verified. Proceeding..."
+      : "CAPTCHA Verification Failed.";
     grecaptcha.reset(widgetIdYtToMP3);
   });
 });

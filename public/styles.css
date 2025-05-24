@@ -299,6 +299,24 @@ main {
     margin:0 0.5rem 0 0.5rem;
     outline: none;
 }
+.resolution-container {
+    display:block;
+    margin:0.5rem;
+}
+.resolution {
+    border-bottom: 2px solid var(--text-color);
+    display:flex;
+    padding:0.5rem;
+    align-items:center;
+}
+.resolution-text {
+    flex-grow:3;
+    flex-basis:0;
+    text-align:left;
+}
+.vid-duration {
+    padding:1rem;
+}
 @media only screen and (max-width: 500px) {
     .content-wrapper h1 {
        font-size:1.8rem;

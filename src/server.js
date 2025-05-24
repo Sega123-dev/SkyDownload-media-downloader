@@ -105,8 +105,20 @@ app.get("/download-video", async (req, res) => {
     const info = await ytdl.getInfo(url);
     const title = info.videoDetails.title;
     const thumbnail = info.videoDetails.thumbnails.pop().url;
+    const durationSeconds = parseInt(info.videoDetails.lengthSeconds, 10);
 
-    res.render("downloadvideo", { title, url, thumbnail });
+    const hours = Math.floor(durationSeconds / 3600);
+    const minutes = Math.floor((durationSeconds % 3600) / 60);
+    const seconds = durationSeconds % 60;
+
+    const videoDuration =
+      hours > 0
+        ? `${hours}:${String(minutes).padStart(2, "0")}:${String(
+            seconds
+          ).padStart(2, "0")}`
+        : `${minutes}:${String(seconds).padStart(2, "0")}`;
+
+    res.render("downloadvideo", { title, url, thumbnail, videoDuration });
   } catch (err) {
     console.error("Render error:", err);
     res.status(500).send("Failed to fetch video info");
@@ -248,7 +260,7 @@ app.get("/download-mp3", async (req, res) => {
     const title = info.videoDetails.title;
     const thumbnail = info.videoDetails.thumbnails.pop().url;
 
-    res.render("downloadmp3", { title, url, thumbnail });
+    res.render("downloadmp3", { title, url, thumbnail, videoDuration });
   } catch (err) {
     console.error("Render error:", err);
     res.status(500).send("Failed to fetch video info");

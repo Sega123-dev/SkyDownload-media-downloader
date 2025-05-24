@@ -141,9 +141,8 @@ app.get("/fetch-mp4", async (req, res) => {
     res.setHeader("Content-Disposition", `attachment; filename="${title}.mp4"`);
     res.setHeader("Content-Type", "video/mp4");
 
-    // Choose the best video+audio format in MP4 container
     const stream = ytdl(url, {
-      quality: "highest", // chooses best video+audio combined format
+      quality: "highest",
       filter: (format) =>
         format.container === "mp4" && format.hasVideo && format.hasAudio,
     });

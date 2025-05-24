@@ -5,8 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Download Video</title>
     <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="..public/images/download-icon.png"
+    />
   </head>
-  <body class="">
+  <body>
     <div class="content-wrapper" style="display: flex; justify-content: center">
       <div style="text-align: center">
         <h1>Video Title:</h1>
@@ -21,7 +26,9 @@
           />
         </div>
         <div class="vid-duration">
-          <p>Video duration: <span><%= videoDuration %></span></p>
+          <p id="vid-duration">
+            Video duration: <span><%= videoDuration %></span>
+          </p>
         </div>
         <h1 style="text-align: center">Choose resolution:</h1>
         <div class="resolution-container">

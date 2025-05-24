@@ -185,8 +185,9 @@ app.get("/download-mp3", async (req, res) => {
   try {
     const info = await ytdl.getInfo(url);
     const title = info.videoDetails.title;
+    const thumbnail = info.videoDetails.thumbnails.pop().url;
 
-    res.render("downloadmp3", { title, url });
+    res.render("downloadmp3", { title, url, thumbnail });
   } catch (err) {
     console.error("Render error:", err);
     res.status(500).send("Failed to fetch video info");

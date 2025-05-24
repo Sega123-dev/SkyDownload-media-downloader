@@ -12,12 +12,23 @@
         <h1>Video Title:</h1>
         <p><%= title %></p>
 
+        <div style="display: flex; margin: 0.5rem auto 0.5rem auto">
+          <img
+            src="<%= thumbnail %>"
+            alt="Video thumbnail"
+            height="450"
+            width="450"
+          />
+        </div>
+
         <a href="/fetch-mp3?url=<%= encodeURIComponent(url) %>">
           <button class="button-effect">Download MP3</button>
         </a>
 
         <br /><br />
-        <a href="/yt-to-mp3" class="four04-anchor">Convert another video</a>
+        <a href="/yt-to-mp3" class="four04-anchor" style="padding: 0; margin: 0"
+          >Convert another video</a
+        >
       </div>
     </div>
   </body>

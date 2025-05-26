@@ -125,7 +125,7 @@ app.get("/download-video", async (req, res) => {
   }
 });
 
-app.get("/fetch-mp4", async (req, res) => {
+app.get("/fetch-mp4-360p", async (req, res) => {
   const url = req.query.videoURL;
 
   if (!url || !ytdl.validateURL(url)) {
@@ -156,94 +156,6 @@ app.get("/fetch-mp4", async (req, res) => {
   } catch (err) {
     console.error("Download error:", err);
     res.status(500).send("Failed to download MP4");
-  }
-});
-
-app.post("/spotify-downloader", async (req, res) => {
-  const token = req.body.token;
-  const secretKey = process.env.RECAPTCHA_SECRET_KEY;
-
-  if (!token) {
-    return res
-      .status(400)
-      .json({ verified: false, error: "No token provided" });
-  }
-
-  try {
-    const params = new URLSearchParams();
-    params.append("secret", secretKey);
-    params.append("response", token);
-
-    const response = await fetch(
-      "https://www.google.com/recaptcha/api/siteverify",
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: params.toString(),
-      }
-    );
-
-    const data = await response.json();
-
-    if (data.success) {
-      res.json({ verified: true, redirect: "/home" });
-    } else {
-      console.log("reCAPTCHA failed:", data);
-      res.status(403).json({ verified: false, error: data["error-codes"] });
-    }
-  } catch (err) {
-    console.error("Error verifying CAPTCHA:", err);
-    res.status(500).json({ verified: false, error: "Server error" });
-  }
-});
-
-app.post("/yt-to-mp3", async (req, res) => {
-  const token = req.body.token;
-  const url = req.body.YTToMP3URLInput;
-  const secretKey = process.env.RECAPTCHA_SECRET_KEY;
-
-  if (!token) {
-    return res
-      .status(400)
-      .json({ success: false, error: "Missing CAPTCHA token" });
-  }
-
-  if (!ytdl.validateURL(url)) {
-    return res
-      .status(400)
-      .json({ success: false, error: "Invalid YouTube URL" });
-  }
-
-  try {
-    const params = new URLSearchParams();
-    params.append("secret", secretKey);
-    params.append("response", token);
-
-    const response = await fetch(
-      "https://www.google.com/recaptcha/api/siteverify",
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: params.toString(),
-      }
-    );
-
-    const data = await response.json();
-
-    if (!data.success) {
-      return res
-        .status(403)
-        .json({ success: false, error: "CAPTCHA verification failed" });
-    }
-
-    // Everything good: send a download link to trigger next step
-    res.json({
-      success: true,
-      downloadPage: `/download-mp3?url=${encodeURIComponent(url)}`,
-    });
-  } catch (err) {
-    console.error("Error:", err);
-    res.status(500).json({ success: false, error: "Server error" });
   }
 });
 

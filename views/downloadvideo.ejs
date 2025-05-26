@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Download Video</title>
     <link rel="stylesheet" href="styles.css" />
+    <script src="/script.js" defer></script>
     <link
       rel="icon"
       type="image/x-icon"
@@ -26,9 +27,13 @@
           />
         </div>
         <div class="vid-duration">
-          <p id="vid-duration">
-            Video duration: <span><%= videoDuration %></span>
+          <p>
+            Video duration: <span id="vid-duration"><%= videoDuration %></span>
           </p>
+          <span style="font-style: italic; display: none" id="duration-message"
+            >We suggest you to use lower resolution to save data for long
+            videos.</span
+          >
         </div>
         <h1 style="text-align: center">Choose resolution:</h1>
         <div class="resolution-container">
@@ -37,7 +42,17 @@
               <p>4K 60fps</p>
             </div>
             <div class="resolution-button">
-              <a href="">
+              <a href="/fetch-mp4-4k?videoURL=<%= encodeURIComponent(url) %>">
+                <button class="button-effect">Download video</button>
+              </a>
+            </div>
+          </div>
+          <div class="resolution">
+            <div class="resolution-text">
+              <p>1080p</p>
+            </div>
+            <div class="resolution-button">
+              <a href="/fetch-mp4-720p?videoURL=<%= encodeURIComponent(url) %>">
                 <button class="button-effect">Download video</button>
               </a>
             </div>
@@ -47,7 +62,7 @@
               <p>720p</p>
             </div>
             <div class="resolution-button">
-              <a href="/fetch-mp4?videoURL=<%= encodeURIComponent(url) %>">
+              <a href="/fetch-mp4-720p?videoURL=<%= encodeURIComponent(url) %>">
                 <button class="button-effect">Download video</button>
               </a>
             </div>
@@ -57,7 +72,7 @@
               <p>480p</p>
             </div>
             <div class="resolution-button">
-              <a href="">
+              <a href="/fetch-mp4-720p?videoURL=<%= encodeURIComponent(url) %>">
                 <button class="button-effect">Download video</button>
               </a>
             </div>
@@ -67,7 +82,7 @@
               <p>360p</p>
             </div>
             <div class="resolution-button">
-              <a href="">
+              <a href="/fetch-mp4-360p?videoURL=<%= encodeURIComponent(url) %>">
                 <button class="button-effect">Download video</button>
               </a>
             </div>

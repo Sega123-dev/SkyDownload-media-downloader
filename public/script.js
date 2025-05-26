@@ -205,3 +205,15 @@ document.addEventListener("DOMContentLoaded", () => {
     grecaptcha.reset(widgetIdYtToMP3);
   });
 });
+const videoDurationHolder = document.getElementById("vid-duration").innerText;
+const vidDurationMessage = document.getElementById("duration-message");
+
+function extractDuration() {
+  if (videoDurationHolder.length >= 7) {
+    vidDurationMessage.style.display = "block";
+  } else if (videoDurationHolder.length == 5) {
+    const minuteDigit = Number(videoDurationHolder[0]);
+    if (minuteDigit >= 3) vidDurationMessage.style.display = "block";
+  }
+}
+extractDuration();

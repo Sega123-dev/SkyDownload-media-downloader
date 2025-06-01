@@ -256,3 +256,41 @@ app.get("/fetch-mp3", async (req, res) => {
     res.status(500).send("Failed to download MP3");
   }
 });
+
+app.post("/spotify-downloader", async (req, res) => {
+  const token = req.body.token;
+  const secretKey = process.env.RECAPTCHA_SECRET_KEY; // Your Secret Key
+
+  if (!token) {
+    return res
+      .status(400)
+      .json({ verified: false, error: "No token provided" });
+  }
+
+  try {
+    const params = new URLSearchParams();
+    params.append("secret", secretKey);
+    params.append("response", token);
+
+    const response = await fetch(
+      "https://www.google.com/recaptcha/api/siteverify",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: params.toString(),
+      }
+    );
+
+    const data = await response.json();
+
+    if (data.success) {
+      res.json({ verified: true });
+    } else {
+      console.log("reCAPTCHA failed:", data);
+      res.status(403).json({ verified: false, error: data["error-codes"] });
+    }
+  } catch (err) {
+    console.error("Error verifying CAPTCHA:", err);
+    res.status(500).json({ verified: false, error: "Server error" });
+  }
+});

@@ -92,10 +92,6 @@ app.set("view engine", "ejs");
 app.use(express.static("public"));
 ```
 
-## Deployment
-
-Website is deployed with serverless functions through Vercel.
-
 ## Built With
 
 - [Express](https://expressjs.com/) – Fast, unopinionated, minimalist web framework for Node.js  

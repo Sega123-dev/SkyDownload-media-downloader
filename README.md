@@ -108,16 +108,13 @@ Website is deployed with serverless functions through Vercel.
 
 ## Authors
 
-* **Sega123-dev** - *Worked mostly on the app and implemented all design and functionality* - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+* **Sega123-dev** - *Worked mostly on the app and implemented all design and functionality* - [Sega123-dev](https://github.com/Sega123-dev)
+* **KebabDev** - *Implemented accessibility* - [KebabDev](https://github.com/Sega123-dev)
 
 ## Acknowledgments
 
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
+* I don't promote piracy,this software is made for learning purposes only.
+* Downloading results may vary based on the user region,youtube restrictions,DRM restrictions and availability.
+* Files like node_modules,.env,package.json and package-lock.json are not pushed to this repo.
+
+If there are issues with the software or you feel like your rights are violated,feel free to contact me.

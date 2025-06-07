@@ -1,55 +1,95 @@
-﻿# Project Title
+﻿# SkyDownload-media-downloader
 
-One Paragraph of project description goes here
+SkyDownload is a website and open-source software that is used for downloading videos from youtube in both MP3 and MP4 format.Website has the following features and pages:
+
+- Downloading Youtube videos in various resolutions through a youtube video link(if supported).
+- Downloading audio from youtube videos in the best quality through a youtube video link(128 bitrate).
+- 404 page for invalid GET requests.
+- Terms of Service page to guide you through our legal labels.
+- Page for downloading videos.
+- Page for downloading audios.
+- Simple instruction page on how to download the media content.
+- Simple routing through NodeJS router.
+- Page that describes about the software and website.
+- Website pages where the data is scraped and ready to be downloaded.
+- FAQ(Frequently Asked Questions) page.
+- reCaptcha implemented for safety from bot traffic.
+- Simple dark-themed UI design.
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.We suggest you to download the compressed ZIP file from the GitHub page.See in the Prerequisites what you need to install on your machine so you can make this app running
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
+Install the ExpressJS for handling back-end processing of youtube requests.
 
 ```
-Give examples
+npm run express
 ```
+
+Install the latest version of FFmpeg software for converting audio and video into MP3 and MP4.
+
+```
+npm run ffmpeg fluent-ffmpeg @ffmpeg-installer/ffmpeg
+```
+
+Install the FFmpeg software on your machine from the [FFmpeg Official Website](https://ffmpeg.org/).
+
+Run this command to install the latest version of JavaScript library ytdl-core for handling youtube requests
+
+```
+npm install @distube/ytdl-core@latest
+```
+
+Install the dotenv library for accessing your environment variables safely(use your own env variables).
+
+```
+npm install dotenv
+```
+
+Use the EJS view engine for easy access to fetched back-end data.
+
+```
+npm install ejs
+```
+
+Other dependencies used in this software for fetching and parsing data:
+
+```
+npm install path node-fetch body-parser uuid
+```
+
+
+
+**Note:** These softwares can be deprecated due to constant limitations of Youtube.Do not use VPN when using our website or anything that can disrupt the streaming process.
+
 
 ### Installing
 
-A step by step series of examples that tell you how to get a development env running
-
-Say what the step will be
+In the server.js paste this code for getting all needed dependencies and libraries to be up and running(it should be already at the top of the server.js file).
 
 ```
-Give the example
-```
+const express = require("express");
+const path = require("path");
+const app = express();
+const fetch = require("node-fetch");
+const bodyParser = require("body-parser");
+const ffmpeg = require("fluent-ffmpeg");
+const ffmpegInstaller = require("@ffmpeg-installer/ffmpeg");
+const ytdl = require("@distube/ytdl-core");
+ffmpeg.setFfmpegPath(ffmpegInstaller.path);
 
-And repeat
+app.use(express.json());
 
-```
-until finished
-```
+require("dotenv").config();
 
-End with an example of getting some data out of the system or using it for a little demo
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
-## Running the tests
+app.set("view engine", "ejs");
 
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
+app.use(express.static("public"));
 ```
 
 ## Deployment

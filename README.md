@@ -109,7 +109,7 @@ Website is deployed with serverless functions through Vercel.
 ## Authors
 
 * **Sega123-dev** - *Worked mostly on the app and implemented all design and functionality* - [Sega123-dev](https://github.com/Sega123-dev)
-* **KebabDev** - *Implemented accessibility* - [KebabDev](https://github.com/Sega123-dev)
+* **KebabDev** - *Implemented accessibility* - [KebabDev](https://github.com/KebabDev)
 
 ## Acknowledgments
 

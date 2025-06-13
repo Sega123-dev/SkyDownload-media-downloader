@@ -15,6 +15,7 @@ SkyDownload is a website and open-source software that is used for downloading v
 - FAQ(Frequently Asked Questions) page.
 - reCaptcha implemented for safety from bot traffic.
 - Simple dark-themed UI design.
+- Website is responsive and accessible easily.
 
 ## Getting Started
 

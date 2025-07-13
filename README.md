@@ -63,7 +63,7 @@ npm install path node-fetch body-parser uuid
 
 
 
-**Note:** These softwares can be deprecated due to constant limitations of Youtube.Do not use VPN when using our website or anything that can disrupt the streaming process.
+**Note:** These softwares can be deprecated due to constant limitations of Youtube.Do not use VPN when using the app or anything that can disrupt the streaming process.
 
 
 ### Installing

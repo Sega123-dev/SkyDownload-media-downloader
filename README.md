@@ -70,7 +70,7 @@ npm install path node-fetch body-parser uuid
 
 In the server.js paste this code for getting all needed dependencies and libraries to be up and running(it should be already at the top of the server.js file).
 
-```
+```js
 const express = require("express");
 const path = require("path");
 const app = express();
@@ -115,3 +115,4 @@ app.use(express.static("public"));
 * Files like node_modules,.env,package.json and package-lock.json are not pushed to this repo.
 
 If there are issues with the software or you feel like your rights are violated,feel free to contact me.
+
